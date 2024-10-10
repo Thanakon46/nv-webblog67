@@ -1,7 +1,7 @@
 const UserController = require('./controllers/UserController');
 const UserAuthenController = require('./controllers/UserAuthenController');
 const isAuthenController = require('./authen/isAuthenController');
-const BlogController = require('./controllers/BlogController');
+const CapController = require('./controllers/CapController');
 
 let multer = require("multer")
 
@@ -25,11 +25,11 @@ module.exports = (app) => {
     app.put('/user/:userId', UserController.put);
     app.delete('/user/:userId', UserController.remove);
     app.post('/login', UserAuthenController.login);
-    app.post('/blog', BlogController.create);
-    app.put('/blog/:blogId', BlogController.put);
-    app.delete('/blog/:blogId', BlogController.remove);
-    app.get('/blog/:blogId', BlogController.show);
-    app.get('/blogs', BlogController.index);
+    app.post('/cap', CapController.create);
+    app.put('/cap/:capId', CapController.put);
+    app.delete('/cap/:capId', CapController.remove);
+    app.get('/cap/:capId', CapController.show);
+    app.get('/caps', CapController.index);
 
     // upload
     app.post("/upload", function (req, res) {

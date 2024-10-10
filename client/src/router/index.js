@@ -9,10 +9,10 @@ import Login from '@/components/Login'
 
 import CommentIndex from '@/components/Comments/index' 
 
-import BlogIndex from '@/components/Blogs/index'
-import BlogCreate from '@/components/Blogs/CreateBlog'
-import BlogShow from '@/components/Blogs/ShowBlog'
-import BlogEdit from '@/components/Blogs/EditBlog'
+import CapIndex from '@/components/Caps/index'
+import CapCreate from '@/components/Caps/CreateCap'
+import CapShow from '@/components/Caps/ShowCap'
+import CapEdit from '@/components/Caps/EditCap'
 
 import Upload from '@/components/Util/Upload'
 
@@ -47,24 +47,24 @@ export default new Router({
       component: Login
     },
     {
-      path: '/blogs',
-      name: 'blogs',
-      component: BlogIndex
+      path: '/caps',
+      name: 'caps',
+      component: CapIndex
     },
     {
-      path: '/blog/create',
-      name: 'blog-create',
-      component: BlogCreate
+      path: '/cap/create',
+      name: 'cap-create',
+      component: CapCreate
     },
     {
-      path: '/blog/edit/:blogId',
-      name: 'blog-edit',
-      component: BlogEdit
+      path: '/cap/edit/:capId',
+      name: 'cap-edit',
+      component: CapEdit
     },
     {
-      path: '/blog/:blogId',
-      name: 'blog',
-      component: BlogShow
+      path: '/cap/:capId',
+      name: 'cap',
+      component: CapShow
     },
     {
       path: '/comments',
