@@ -1,0 +1,149 @@
+<template>
+    <div class="edit-cap">
+      <h1>Edit Cap</h1>
+      <form @submit.prevent="updateCap" class="cap-form">
+        <div class="form-group">
+          <label for="band">Band</label>
+          <input type="text" v-model="cap.band" id="band" class="form-control" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input type="text" v-model="cap.category" id="category" class="form-control" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea v-model="cap.content" id="content" class="form-control" required></textarea>
+        </div>
+  
+        <div class="form-group">
+          <label for="status">Status</label>
+          <input type="text" v-model="cap.status" id="status" class="form-control" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="pictures">Pictures (URLs)</label>
+          <input type="text" v-model="cap.pictures" id="pictures" class="form-control" />
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </template>
+  
+  <script>
+  import CapService from '@/services/CapService';
+  
+  export default {
+    data() {
+      return {
+        cap: {
+          band: '',
+          category: '',
+          content: '',
+          status: '',
+          pictures: ''
+        }
+      };
+    },
+    methods: {
+      async updateCap() {
+        try {
+          await CapService.updateCap(this.cap);
+          this.$router.push('/caps');
+        } catch (error) {
+          console.error('Error updating cap:', error);
+        }
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .edit-cap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cap-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .cap-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .cap-form .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .cap-form .form-control:focus {
+    border-color: #007bff;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  </style>
+  
+  
+  <script>
+  import CapService from '@/services/CapService';
+  
+  export default {
+    data() {
+      return {
+        cap: {
+          band: '',
+          category: '',
+          content: '',
+          status: '',
+          pictures: ''
+        }
+      };
+    },
+    created() {
+      this.fetchCap();
+    },
+    methods: {
+      async fetchCap() {
+        try {
+          const response = await CapService.getCapById(this.$route.params.id);
+          this.cap = response.data;
+        } catch (error) {
+          console.error('Error fetching cap:', error);
+        }
+      },
+      async updateCap() {
+        try {
+          await CapService.updateCap(this.$route.params.id, this.cap);
+          this.$router.push('/caps');
+        } catch (error) {
+          console.error('Error updating cap:', error);
+        }
+      }
+    }
+  };
+  </script>
+  

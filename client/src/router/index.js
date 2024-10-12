@@ -9,10 +9,10 @@ import Login from '@/components/Login'
 
 import CommentIndex from '@/components/Comments/index' 
 
-import CapIndex from '@/components/Caps/index'
-import CapCreate from '@/components/Caps/CreateCap'
-import CapShow from '@/components/Caps/ShowCap'
-import CapEdit from '@/components/Caps/EditCap'
+import CapList from '@/components/Cap/CapList.vue';
+import CapCreate from '@/components/Cap/CapCreate.vue';
+import CapEdit from '@/components/Cap/CapEdit.vue';
+import CapDetail from '@/components/Cap/CapDetail.vue';
 
 import Upload from '@/components/Util/Upload'
 
@@ -21,6 +21,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    // User routes
     {
       path: '/users',
       name: 'users',
@@ -46,10 +47,19 @@ export default new Router({
       name: 'login',
       component: Login
     },
+    
+    // Comments routes
+    {
+      path: '/comments',
+      name: 'comments',
+      component: CommentIndex
+    },
+
+    // Cap routes
     {
       path: '/caps',
       name: 'caps',
-      component: CapIndex
+      component: CapList
     },
     {
       path: '/cap/create',
@@ -57,24 +67,21 @@ export default new Router({
       component: CapCreate
     },
     {
-      path: '/cap/edit/:capId',
+      path: '/cap/edit/:id',
       name: 'cap-edit',
       component: CapEdit
     },
     {
-      path: '/cap/:capId',
-      name: 'cap',
-      component: CapShow
+      path: '/cap/:id',
+      name: 'cap-detail',
+      component: CapDetail
     },
-    {
-      path: '/comments',
-      name: 'comments',
-      component: CommentIndex
-    },
+
+    // Upload route
     {
       path: '/upload',
       name: 'upload',
       component: Upload
-    },
+    }
   ]
 })
